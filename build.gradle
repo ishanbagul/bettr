@@ -1,0 +1,37 @@
+// Top-level build file
+buildscript {
+    ext.kotlin_version = '1.8.0' // Compatible with JDK 11
+    repositories {
+        google() // Must be first
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2' // Last AGP version supporting JDK 11
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google() // Must be first
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://jitpack.io' }
+    }
+    tasks.withType(Javadoc) {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/8/docs/api/"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
